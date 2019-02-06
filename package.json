@@ -21,6 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "electron": "^2.0.8",
-    "electron-edge-js": "^8.3.6"
+    "electron-edge-js": "^10.11.0"
   }
 }
