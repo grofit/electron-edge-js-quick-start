@@ -1,6 +1,8 @@
 import {baseDll, externalTypeName, localTypeName} from "./environment";
 import {func} from "electron-edge-js";
 
+console.log("Using", baseDll, externalTypeName, localTypeName);
+
 export const getAppDomainDirectory = func({
     assemblyFile: baseDll,
     typeName: localTypeName,

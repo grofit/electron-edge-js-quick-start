@@ -1,4 +1,5 @@
-(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -86,41 +87,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return baseDll; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return localTypeName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return externalTypeName; });
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);
-
-let version = location.search.split('version=')[1];
-const namespace = `QuickStart.${version.charAt(0).toUpperCase()}${version.substr(1)}`;
-if(version === 'core') version = 'coreapp';
-
-const baseNetAppPath = Object(path__WEBPACK_IMPORTED_MODULE_0__["join"])(__dirname, `/src/${namespace}/bin/Debug/net${version}2.0`);
-
-process.env.EDGE_USE_CORECLR = 1;
-if(version !== 'standard')
-{ process.env.EDGE_APP_ROOT = baseNetAppPath; }
-
-const baseDll = Object(path__WEBPACK_IMPORTED_MODULE_0__["join"])(baseNetAppPath, `${namespace}.dll`);
-const localTypeName = `${namespace}.LocalMethods`;
-const externalTypeName = `${namespace}.ExternalMethods`;
-/* WEBPACK VAR INJECTION */}.call(this, "/"))
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = require("electron-edge-js");
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("electron");
 
 /***/ }),
 /* 3 */
@@ -129,37 +110,62 @@ module.exports = require("path");
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./src/Renderer/environment.js
-var environment = __webpack_require__(0);
+// EXTERNAL MODULE: external "electron"
+var external_electron_ = __webpack_require__(2);
 
+// EXTERNAL MODULE: external "path"
+var external_path_ = __webpack_require__(1);
+
+// CONCATENATED MODULE: ./src/Renderer/environment.js
+
+
+
+let version = location.search.split('version=')[1];
+const namespace = `QuickStart.${version.charAt(0).toUpperCase()}${version.substr(1)}`;
+if(version === 'core') version = 'coreapp';
+
+const {app} = external_electron_["remote"];
+const appPath = app.getAppPath();
+const baseNetAppPath = Object(external_path_["join"])(appPath, `/src/${namespace}/bin/Debug/net${version}2.0`);
+
+process.env.EDGE_USE_CORECLR = 1;
+
+if(version !== 'standard')
+{ process.env.EDGE_APP_ROOT = baseNetAppPath; }
+
+const baseDll = Object(external_path_["join"])(baseNetAppPath, `${namespace}.dll`);
+const localTypeName = `${namespace}.LocalMethods`;
+const externalTypeName = `${namespace}.ExternalMethods`;
 // EXTERNAL MODULE: external "electron-edge-js"
-var external_electron_edge_js_ = __webpack_require__(1);
+var external_electron_edge_js_ = __webpack_require__(0);
 
 // CONCATENATED MODULE: ./src/Renderer/methods.js
 
 
 
+console.log("Using", baseDll, externalTypeName, localTypeName);
+
 const getAppDomainDirectory = Object(external_electron_edge_js_["func"])({
-    assemblyFile: environment["a" /* baseDll */],
-    typeName: environment["c" /* localTypeName */],
+    assemblyFile: baseDll,
+    typeName: localTypeName,
     methodName: 'GetAppDomainDirectory'
 });
 
 const getCurrentTime = Object(external_electron_edge_js_["func"])({
-    assemblyFile: environment["a" /* baseDll */],
-    typeName: environment["c" /* localTypeName */],
+    assemblyFile: baseDll,
+    typeName: localTypeName,
     methodName: 'GetCurrentTime'
 });
 
 const useDynamicInput = Object(external_electron_edge_js_["func"])({
-    assemblyFile: environment["a" /* baseDll */],
-    typeName: environment["c" /* localTypeName */],
+    assemblyFile: baseDll,
+    typeName: localTypeName,
     methodName: 'UseDynamicInput'
 });
 
 const getPerson = Object(external_electron_edge_js_["func"])({
-    assemblyFile: environment["a" /* baseDll */],
-    typeName: environment["b" /* externalTypeName */],
+    assemblyFile: baseDll,
+    typeName: externalTypeName,
     methodName: 'GetPersonInfo'
 });
 
@@ -192,4 +198,4 @@ window.onload = function() {
 
 
 /***/ })
-/******/ ])));
+/******/ ]);

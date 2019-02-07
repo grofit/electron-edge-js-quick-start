@@ -8,11 +8,12 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
         filename: 'renderer.common.js',
-        libraryTarget: "commonjs"
+        libraryTarget: "commonjs2"
     },
-    externals: [
-        "electron-edge-js"
-    ],
+    externals: {
+        "electron-edge-js": "commonjs electron-edge-js",
+        "electron": "commonjs electron"
+    },
     optimization: {
         minimize: false
     }
