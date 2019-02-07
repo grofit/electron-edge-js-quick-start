@@ -4,6 +4,7 @@
   "description": "A minimal Electron application using `electron-edge-js` with .NET Core",
   "main": "main.js",
   "scripts": {
+    "build": "webpack",
     "start": "electron --core .",
     "start:core": "electron --core .",
     "start:standard": "electron --standard ."
@@ -22,5 +23,9 @@
   "dependencies": {
     "electron": "^3.1.3",
     "electron-edge-js": "^10.11.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   }
 }
